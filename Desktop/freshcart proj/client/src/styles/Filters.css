@@ -1,0 +1,113 @@
+/* ===== FILTER CARD ===== */
+.filters-container {
+  width: 200px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* TITLE */
+.filter-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* SECTION */
+.filter-section {
+  margin-bottom: 25px;
+}
+
+.filter-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* ===== CHECKBOX ===== */
+.categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #444;
+  position: relative;
+}
+
+/* Hide default checkbox */
+.checkbox-label input {
+  display: none;
+}
+
+/* Custom checkbox */
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+/* Checked */
+.checkbox-label input:checked + .custom-checkbox {
+  background: #4a7c59;
+  border-color: #4a7c59;
+}
+
+/* ===== PRICE ===== */
+.price-title {
+  color: #4a7c59;
+}
+
+/* SLIDER */
+.price-slider {
+  width: 100%;
+  height: 5px;
+  border-radius: 4px;
+  background: #ddd;
+  outline: none;
+  margin: 10px 0;
+}
+
+/* Thumb */
+.price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #4a7c59;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* LABELS */
+.price-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+}
+
+/* ===== BUTTON ===== */
+.clear-btn {
+  width: 100%;
+  padding: 12px;
+  background: #4a7c59;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.clear-btn:hover {
+  background: #3b6548;
+}

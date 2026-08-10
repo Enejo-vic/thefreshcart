@@ -1,0 +1,244 @@
+/* =========================
+   FRESHCART INTRO
+========================= */
+
+.freshcart-intro {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: #4f845f;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+    overflow: hidden;
+
+    animation: introLeave 0.8s ease-in-out 3.3s forwards;
+}
+
+
+/* Main content */
+
+.freshcart-intro-content {
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+
+/* =========================
+   SHOPPING CART
+========================= */
+
+.intro-cart {
+    color: white;
+
+    display: flex;
+    justify-content: center;
+
+    opacity: 0;
+
+    transform: translateX(-100px);
+
+    animation: cartDriveIn 0.9s ease-out 0.2s forwards;
+}
+
+
+/* =========================
+   FRESHCART TITLE
+========================= */
+
+.intro-store-name {
+    font-size: clamp(48px, 8vw, 85px);
+
+    font-weight: 700;
+
+    margin: 10px 0 5px;
+
+    letter-spacing: -2px;
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    animation: titleAppear 0.7s ease 0.8s forwards;
+}
+
+
+/* =========================
+   TAGLINE
+========================= */
+
+.intro-tagline {
+    margin: 0;
+
+    font-size: 17px;
+
+    letter-spacing: 0.5px;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    animation: taglineAppear 0.7s ease 1.2s forwards;
+}
+
+
+/* =========================
+   LOADING BAR
+========================= */
+
+.intro-progress {
+    width: 240px;
+    height: 4px;
+
+    margin: 35px auto 12px;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    animation: fadeIn 0.4s ease 1.4s forwards;
+}
+
+
+.intro-progress-bar {
+    width: 0%;
+    height: 100%;
+
+    background: white;
+
+    border-radius: 20px;
+
+    animation: progressLoad 1.8s ease 1.4s forwards;
+}
+
+
+/* =========================
+   LOADING TEXT
+========================= */
+
+.intro-loading-text {
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    opacity: 0;
+
+    animation: fadeIn 0.5s ease 1.6s forwards;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes cartDriveIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px) rotate(-10deg);
+    }
+
+    70% {
+        transform: translateX(8px) rotate(3deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+}
+
+
+@keyframes titleAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes taglineAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes progressLoad {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+
+/* Entire intro moves upward */
+
+@keyframes introLeave {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+        visibility: hidden;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .intro-store-name {
+        font-size: 50px;
+    }
+
+    .intro-tagline {
+        font-size: 14px;
+    }
+
+    .intro-progress {
+        width: 190px;
+    }
+
+}
