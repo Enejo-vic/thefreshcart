@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -7,45 +6,56 @@ const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 
-const app = express();
+const connectDB = require("./config/db");
 
-/* =========================================
-   MIDDLEWARE
-========================================= */
+const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    origin:
+      process.env.CLIENT_URL ||
+      "http://localhost:3000",
     credentials: true,
   })
 );
 
 app.use(express.json());
 
-/* =========================================
-   DATABASE
-========================================= */
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected");
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
+// =========================================
+// DATABASE CONNECTION
+// =========================================
 
-/* =========================================
-   ROUTES
-========================================= */
+app.use("/api", async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error(
+      "DATABASE CONNECTION ERROR:",
+      error
+    );
+
+    return res.status(503).json({
+      message:
+        "Database temporarily unavailable",
+    });
+  }
+});
+
+
+// =========================================
+// API ROUTES
+// =========================================
 
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 
-/* =========================================
-   HEALTH CHECK
-========================================= */
+
+// =========================================
+// HEALTH CHECK
+// =========================================
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -53,32 +63,21 @@ app.get("/", (req, res) => {
   });
 });
 
-/* =========================================
-   ERROR HANDLER
-========================================= */
 
-app.use((err, req, res, next) => {
-  console.error(err);
-
-  res.status(500).json({
-    message: "Internal server error",
-  });
-});
-
-/* =========================================
-   LOCAL DEVELOPMENT
-========================================= */
+// =========================================
+// LOCAL SERVER
+// =========================================
 
 if (require.main === module) {
   const PORT = process.env.PORT || 5000;
 
   app.listen(PORT, () => {
-    console.log(`FreshCart server running on port ${PORT}`);
+    console.log(
+      `FreshCart server running on port ${PORT}`
+    );
   });
 }
 
-/* =========================================
-   VERCEL EXPORT
-========================================= */
 
+// Vercel
 module.exports = app;
