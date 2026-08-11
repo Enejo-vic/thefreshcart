@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import api from "../api/api";
 import "../styles/ProductSection.css";
 import AddToCartButton from "../components/AddToCartButton";
-import { Link } from "react-router-dom";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
